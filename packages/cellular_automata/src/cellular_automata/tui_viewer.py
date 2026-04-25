@@ -56,6 +56,7 @@ def render_board(state: Snapshot, term: blessed.Terminal, vp: Viewport) -> None:
     display_width = term.width or 80
     display_height = (term.height or 24) - 1
     board = state.board
+    combats = {(loc.x, loc.y) for loc in state.combats}
 
     for dy in range(display_height):
         line = ""
@@ -67,7 +68,10 @@ def render_board(state: Snapshot, term: blessed.Terminal, vp: Viewport) -> None:
                 if cell.contents:
                     team = int(cell.contents[-1].team) + 1
                     color = TEAM_COLORS.get(team, "white")
-                    line += getattr(term, color)(get_team_display(team))
+                    if (bx, by) in combats:
+                        line += getattr(term, f"bold_{color}")(get_team_display(team))
+                    else:
+                        line += getattr(term, color)(get_team_display(team))
                 else:
                     line += term.gray("·")
             else:

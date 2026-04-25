@@ -14,6 +14,7 @@ class Snapshot:
     tick: int
     board: Board
     outcome: str = 'ongoing'
+    combats: tuple = ()
 
 
 
@@ -31,6 +32,7 @@ class SimulationBase(ABC):
         self.board = board
         self.entities = entities
         self._tick = 0
+        self._combats: list[Location] = []
 
     # ---------------- public ----------------
     def advance(self, actions: Dict[str, OrderSequence]) -> Snapshot:
@@ -40,7 +42,7 @@ class SimulationBase(ABC):
         return self.snapshot()
 
     def snapshot(self) -> Snapshot:
-        return Snapshot(self._tick, self.board)
+        return Snapshot(self._tick, self.board, combats=tuple(getattr(self, '_combats', ())))
 
     # ---------------- hooks for child games ----------------
     @abstractmethod

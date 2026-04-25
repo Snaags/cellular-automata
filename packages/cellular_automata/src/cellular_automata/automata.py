@@ -72,12 +72,19 @@ class CombatSimulation(SimulationBase):
 
     def _after_tick(self) -> None:
         # hostile spawn, Conway step, victory checks …
+        self._combats = []  # Reset combat tracking
         for team in self.teams:
             success = self.spawn_adjacent(team)
             if not success:
                 border_cells = self.board.get_cells_boardering_other(team)
+                if not border_cells:
+                    continue
                 cell_ = random.choice(border_cells)
+                old_team = cell_.contents[-1].team
                 cell_out = self._next_cell_state(cell_.location)
+                new_team = cell_out.contents[-1].team
+                if old_team != new_team:
+                    self._combats.append(cell_.location)
                 self.board.replace_contents_at_location(
                     cell_.location, cell_out.contents[-1]
                 )
