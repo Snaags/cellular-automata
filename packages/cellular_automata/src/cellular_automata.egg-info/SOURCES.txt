@@ -6,5 +6,6 @@ src/cellular_automata/viewer.py
 src/cellular_automata.egg-info/PKG-INFO
 src/cellular_automata.egg-info/SOURCES.txt
 src/cellular_automata.egg-info/dependency_links.txt
+src/cellular_automata.egg-info/entry_points.txt
 src/cellular_automata.egg-info/requires.txt
 src/cellular_automata.egg-info/top_level.txt

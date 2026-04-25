@@ -1,7 +1,7 @@
 
 # optional (lets `uv pip install -e .` succeed)
 [project]
-name = "game-dev-workspace"
+name = "game-dev"
 version = "0.0.0"
 dependencies = [
     "mypy>=1.15.0",

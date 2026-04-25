@@ -1,7 +1,7 @@
 [project]
 name = "cellular-automata"
 version = "0.1.0"
-description = "Add your description here"
+description = "Cellular automata combat simulation with pygame viewer"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -9,6 +9,9 @@ dependencies = [
     "gridcore",
     "snakeviz>=2.2.2",
 ]
+
+[project.scripts]
+cellular-automata = "cellular_automata.viewer:main"
 
 [project.optional-dependencies]
 dev = ["pytest", "ruff", "mypy"]

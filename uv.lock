@@ -5,7 +5,7 @@ requires-python = ">=3.13"
 [manifest]
 members = [
     "cellular-automata",
-    "game-dev-workspace",
+    "game-dev",
     "game-service",
     "gridcore",
 ]
@@ -48,7 +48,7 @@ wheels = [
 ]
 
 [[package]]
-name = "game-dev-workspace"
+name = "game-dev"
 version = "0.0.0"
 source = { virtual = "." }
 dependencies = [
