@@ -1,14 +1,20 @@
 import sys
 import json
 import time
+import select
 from pathlib import Path
-from typing import Union
 from dataclasses import dataclass
 
 import blessed
 from gridcore.types import Location
 from cellular_automata.automata import CombatSimulation
 from gridcore.simulation import Snapshot
+
+
+@dataclass
+class Viewport:
+    x: int = 0
+    y: int = 0
 
 
 @dataclass
@@ -43,40 +49,32 @@ TEAM_COLORS = {
 
 
 def get_team_display(team: int) -> str:
-    return "▮"
+    return "■"
 
 
-def render_board(state: Snapshot, term: blessed.Terminal) -> None:
+def render_board(state: Snapshot, term: blessed.Terminal, vp: Viewport) -> None:
     display_width = term.width or 80
     display_height = (term.height or 24) - 1
     board = state.board
 
-    render_width = display_width
-    render_height = display_height
-
-    pad_left = 0
-    pad_top = 0
-
-    scale_x = board.width / render_width
-    scale_y = board.height / render_height
-
-    for dy in range(render_height):
-        line = " " * pad_left
-        for dx in range(render_width):
-            bx = int(dx * scale_x)
-            by = int(dy * scale_y)
-            cell = board.at(Location(bx, by))
-
-            if cell.contents:
-                team = int(cell.contents[-1].team) + 1
-                color = TEAM_COLORS.get(team, "white")
-                line += getattr(term, color)(get_team_display(team))
+    for dy in range(display_height):
+        line = ""
+        for dx in range(display_width):
+            bx = vp.x + dx
+            by = vp.y + dy
+            if bx < board.width and by < board.height:
+                cell = board.at(Location(bx, by))
+                if cell.contents:
+                    team = int(cell.contents[-1].team) + 1
+                    color = TEAM_COLORS.get(team, "white")
+                    line += getattr(term, color)(get_team_display(team))
+                else:
+                    line += term.gray("·")
             else:
-                line += term.gray("·")
-        line += " " * (display_width - len(line))
-        sys.stdout.write(term.move_xy(0, dy + pad_top) + line)
+                line += " "
+        sys.stdout.write(term.move_xy(0, dy) + line)
 
-    status = f" Tick: {state.tick} | Outcome: {state.outcome} "
+    status = f" Tick: {state.tick} | Outcome: {state.outcome} | Pos: {vp.x},{vp.y} "
     sys.stdout.write(term.move_xy(0, display_height) + term.black_on_white(status.ljust(display_width)))
     sys.stdout.flush()
 
@@ -94,7 +92,6 @@ def main() -> None:
 
     config = load_config(config_path)
 
-    term = blessed.Terminal()
     engine = CombatSimulation.initialise_board_with_n_players(
         factions=config.factions,
         width=config.board_width,
@@ -103,19 +100,35 @@ def main() -> None:
         rng=None,
     )
 
+    vp = Viewport()
+    term = blessed.Terminal()
+
     try:
         with term.fullscreen(), term.cbreak(), term.hidden_cursor():
             gstate = engine.snapshot()
-            render_board(gstate, term)
+            render_board(gstate, term, vp)
 
             while gstate.outcome == "ongoing":
                 time.sleep(config.tick_rate_ms / 1000.0)
                 gstate = engine.advance({})
-                render_board(gstate, term)
+
+                if select.select([sys.stdin], [], [], 0)[0]:
+                    key = sys.stdin.read(1)
+                    dw = term.width or 80
+                    dh = (term.height or 24) - 1
+                    if key == 'h' and vp.x > 0:
+                        vp.x -= 1
+                    elif key == 'l' and vp.x + dw < config.board_width:
+                        vp.x += 1
+                    elif key == 'k' and vp.y > 0:
+                        vp.y -= 1
+                    elif key == 'j' and vp.y + dh < config.board_height:
+                        vp.y += 1
+
+                render_board(gstate, term, vp)
     finally:
         print(term.normal)
 
 
 if __name__ == "__main__":
     main()
-

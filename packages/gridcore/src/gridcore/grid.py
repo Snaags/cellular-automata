@@ -68,7 +68,7 @@ class Board:
         index = random.choice(empty_cell_indices)
 
         x = index // self.width
-        y = index % self.width
+        y = index % self.height
 
         return Location(x, y)
 
