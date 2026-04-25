@@ -1,7 +1,7 @@
 from typing import Sequence, Union
 from gridcore.simulation import SimulationBase
 from gridcore.actions import OrderSequence
-from gridcore.grid import Board, Cell
+from gridcore.grid_numpy import Board, Cell
 from gridcore.types import BaseEntity, Location
 import random
 from dataclasses import dataclass
@@ -71,36 +71,38 @@ class CombatSimulation(SimulationBase):
         ...
 
     def _after_tick(self) -> None:
-        # hostile spawn, Conway step, victory checks …
         for team in self.teams:
             success = self.spawn_adjacent(team)
             if not success:
                 border_cells = self.board.get_cells_boardering_other(team)
-                cell_ = random.choice(border_cells)
-                cell_out = self._next_cell_state(cell_.location)
-                self.board.replace_contents_at_location(cell_.location, cell_out.contents[-1])
-
+                if border_cells:
+                    cell_ = random.choice(border_cells)
+                    cell_out = self._next_cell_state(cell_.location)
+                    self.board.replace_contents_at_location(cell_.location, cell_out.contents[-1])
 
     def spawn_adjacent(self, team: Union[int, str]) -> bool:
         cells_bordering_empty = self.board.get_cells_boardering_empty()
-        cells_bordering_empty_belonging_to_team = [
-            cell for cell in cells_bordering_empty if cell.controlled_by == team
-        ]
-        if cells_bordering_empty_belonging_to_team:
-            cell_to_spawn_from = random.choice(cells_bordering_empty_belonging_to_team)
-
-            valid_neighbours = self.board.get_valid_neighbours(cell_to_spawn_from.location)
-            empty_neighbours = [
-                neighbour
-                for neighbour in valid_neighbours
-                if self.board.location_is_empty(neighbour)
-            ]
-            self.board.add_entity_at_empty_location(
-                entity=PlayerCell(team=team, health=1), loc=random.choice(empty_neighbours)
-            )
-            return True
-        else:
+        if not cells_bordering_empty:
             return False
+            
+        team_cells = [cell for cell in cells_bordering_empty if cell.controlled_by == team]
+        if not team_cells:
+            return False
+            
+        cell_to_spawn_from = random.choice(team_cells)
+        valid_neighbours = self.board.get_valid_neighbours(cell_to_spawn_from.location)
+        empty_neighbours = [
+            neighbour
+            for neighbour in valid_neighbours
+            if self.board.location_is_empty(neighbour)
+        ]
+        if not empty_neighbours:
+            return False
+            
+        self.board.add_entity_at_empty_location(
+            entity=PlayerCell(team=team, health=1), loc=random.choice(empty_neighbours)
+        )
+        return True
 
     def _next_cell_state(self, location: Location) -> Cell:
         """Pure; derives the cell’s next state from current world."""

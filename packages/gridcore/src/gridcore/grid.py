@@ -110,7 +110,8 @@ class Board:
                     valid_neighbours = self._validate_positions(possible_neighbours)
                     cell_team = cell.contents[-1].team
                     neighbouring_other = [
-                        loc for loc in valid_neighbours if self.at(loc).contents[-1].team != cell_team
+                        loc for loc in valid_neighbours
+                        if not self.at(loc).is_empty and self.at(loc).contents[-1].team != cell_team
                     ]
                     if any(neighbouring_other):
                         cells_neighbouring_other.append(cell)
