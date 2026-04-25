@@ -1,0 +1,24 @@
+
+# optional (lets `uv pip install -e .` succeed)
+[project]
+name = "game-dev-workspace"
+version = "0.0.0"
+dependencies = [
+    "mypy>=1.15.0",
+    "pytest>=8.3.5",
+    "ruff>=0.11.7",
+    "pygame"
+]
+
+
+[tool.uv.workspace]
+members = [
+    "packages/cellular_automata",
+    "packages/game_service",
+    "packages/gridcore"
+]
+
+[tool.uv.sources]
+cellular_automata = { workspace = true }
+game_service = { workspace = true }
+gridcore = { workspace = true }

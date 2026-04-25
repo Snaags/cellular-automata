@@ -1,0 +1,17 @@
+[project]
+name = "cellular-automata"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pygame",
+    "gridcore",
+    "snakeviz>=2.2.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "mypy"]
+
+[tool.uv]
+package = true

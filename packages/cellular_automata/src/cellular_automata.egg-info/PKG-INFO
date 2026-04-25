@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: cellular-automata
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+Requires-Dist: pygame
+Requires-Dist: gridcore
+Requires-Dist: snakeviz>=2.2.2
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: mypy; extra == "dev"

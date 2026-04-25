@@ -1,0 +1,8 @@
+pygame
+gridcore
+snakeviz>=2.2.2
+
+[dev]
+pytest
+ruff
+mypy

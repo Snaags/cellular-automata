@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/game_service/factories.py
+src/game_service/main.py
+src/game_service.egg-info/PKG-INFO
+src/game_service.egg-info/SOURCES.txt
+src/game_service.egg-info/dependency_links.txt
+src/game_service.egg-info/requires.txt
+src/game_service.egg-info/top_level.txt
