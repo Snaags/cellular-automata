@@ -1,0 +1,162 @@
+[
+  {
+    "name": "small_50x20_full",
+    "timestamp": "2026-04-25T21:41:38.353903",
+    "config": {
+      "factions": 10,
+      "width": 50,
+      "height": 20,
+      "ticks": 200,
+      "rng_seed": 42
+    },
+    "results": {
+      "total_time_ms": 341.58145299988973,
+      "time_per_tick_ms": 1.7079072649994487,
+      "cells_occupied": 1000,
+      "total_cells": 1000,
+      "density": 1.0
+    },
+    "top_functions": [
+      "ncalls  tottime  percall  cumtime  percall filename:lineno(function)",
+      "200    0.000    0.000    0.341    0.002 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/simulation.py:36(advance)",
+      "200    0.007    0.000    0.341    0.002 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:73(_after_tick)",
+      "1010    0.087    0.000    0.152    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:90(get_cells_boardering_other)",
+      "2000    0.003    0.000    0.142    0.000 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:86(spawn_adjacent)",
+      "2000    0.069    0.000    0.135    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:137(get_empty_spawn_locations_for_team)",
+      "4020    0.025    0.000    0.120    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:546(pad)",
+      "8040    0.017    0.000    0.039    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:471(_as_pairs)",
+      "1010    0.007    0.000    0.036    0.000 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:99(_next_cell_state)",
+      "4020    0.016    0.000    0.024    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:87(_pad_simple)",
+      "8040    0.017    0.000    0.022    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:130(_set_pad_area)",
+      "1010    0.009    0.000    0.013    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:56(get_valid_neighbours)",
+      "9878    0.007    0.000    0.010    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:177(contents)",
+      "4020    0.002    0.000    0.009    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:3582(round)",
+      "4020    0.002    0.000    0.007    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:48(_wrapfunc)",
+      "8040    0.005    0.000    0.005    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:59(_view_roi)",
+      "16080    0.005    0.000    0.005    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:34(_slice_at_axis)",
+      "4020    0.005    0.000    0.005    0.000 {method 'astype' of 'numpy.generic' objects}",
+      "2290    0.002    0.000    0.005    0.000 /home/snaags/.local/share/uv/python/cpython-3.13.7-linux-x86_64-gnu/lib/python3.13/random.py:345(choice)",
+      "67061    0.004    0.000    0.004    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:162(__init__)"
+    ]
+  },
+  {
+    "name": "medium_50x50",
+    "timestamp": "2026-04-25T21:41:38.400787",
+    "config": {
+      "factions": 5,
+      "width": 50,
+      "height": 50,
+      "ticks": 100,
+      "rng_seed": 42
+    },
+    "results": {
+      "total_time_ms": 46.326699000928784,
+      "time_per_tick_ms": 0.46326699000928784,
+      "cells_occupied": 505,
+      "total_cells": 2500,
+      "density": 0.202
+    },
+    "top_functions": [
+      "ncalls  tottime  percall  cumtime  percall filename:lineno(function)",
+      "100    0.000    0.000    0.046    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/simulation.py:36(advance)",
+      "100    0.001    0.000    0.046    0.000 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:73(_after_tick)",
+      "500    0.001    0.000    0.045    0.000 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:86(spawn_adjacent)",
+      "500    0.025    0.000    0.042    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:137(get_empty_spawn_locations_for_team)",
+      "500    0.003    0.000    0.015    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:546(pad)",
+      "1000    0.002    0.000    0.005    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:471(_as_pairs)",
+      "500    0.002    0.000    0.003    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:87(_pad_simple)",
+      "1000    0.002    0.000    0.003    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:130(_set_pad_area)",
+      "500    0.000    0.000    0.001    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:3582(round)",
+      "505    0.000    0.000    0.001    0.000 /home/snaags/.local/share/uv/python/cpython-3.13.7-linux-x86_64-gnu/lib/python3.13/random.py:345(choice)",
+      "500    0.000    0.000    0.001    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:48(_wrapfunc)",
+      "1000    0.001    0.000    0.001    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:59(_view_roi)",
+      "2000    0.001    0.000    0.001    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:34(_slice_at_axis)",
+      "500    0.001    0.000    0.001    0.000 {method 'astype' of 'numpy.generic' objects}",
+      "505    0.000    0.000    0.000    0.000 /home/snaags/.local/share/uv/python/cpython-3.13.7-linux-x86_64-gnu/lib/python3.13/random.py:245(_randbelow_with_getrandbits)",
+      "500    0.000    0.000    0.000    0.000 {method 'round' of 'numpy.ndarray' objects}",
+      "1000    0.000    0.000    0.000    0.000 {built-in method numpy.array}",
+      "505    0.000    0.000    0.000    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:35(add_entity_at_empty_location)",
+      "1500    0.000    0.000    0.000    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:121(<genexpr>)"
+    ]
+  },
+  {
+    "name": "large_300x50",
+    "timestamp": "2026-04-25T21:41:38.468212",
+    "config": {
+      "factions": 5,
+      "width": 300,
+      "height": 50,
+      "ticks": 100,
+      "rng_seed": 42
+    },
+    "results": {
+      "total_time_ms": 66.44546700044884,
+      "time_per_tick_ms": 0.6644546700044884,
+      "cells_occupied": 505,
+      "total_cells": 15000,
+      "density": 0.033666666666666664
+    },
+    "top_functions": [
+      "ncalls  tottime  percall  cumtime  percall filename:lineno(function)",
+      "100    0.000    0.000    0.066    0.001 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/simulation.py:36(advance)",
+      "100    0.001    0.000    0.066    0.001 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:73(_after_tick)",
+      "500    0.001    0.000    0.065    0.000 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:86(spawn_adjacent)",
+      "500    0.044    0.000    0.062    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:137(get_empty_spawn_locations_for_team)",
+      "500    0.003    0.000    0.016    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:546(pad)",
+      "1000    0.002    0.000    0.005    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:471(_as_pairs)",
+      "500    0.002    0.000    0.003    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:87(_pad_simple)",
+      "1000    0.002    0.000    0.003    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:130(_set_pad_area)",
+      "500    0.000    0.000    0.001    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:3582(round)",
+      "505    0.000    0.000    0.001    0.000 /home/snaags/.local/share/uv/python/cpython-3.13.7-linux-x86_64-gnu/lib/python3.13/random.py:345(choice)",
+      "500    0.000    0.000    0.001    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:48(_wrapfunc)",
+      "1000    0.001    0.000    0.001    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:59(_view_roi)",
+      "500    0.001    0.000    0.001    0.000 {method 'astype' of 'numpy.generic' objects}",
+      "2000    0.001    0.000    0.001    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:34(_slice_at_axis)",
+      "1    0.000    0.000    0.001    0.001 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:37(initialise_board_with_n_players)",
+      "1    0.000    0.000    0.001    0.001 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:59(add_player_entities_to_random_cell)",
+      "505    0.000    0.000    0.001    0.000 /home/snaags/.local/share/uv/python/cpython-3.13.7-linux-x86_64-gnu/lib/python3.13/random.py:245(_randbelow_with_getrandbits)",
+      "5    0.000    0.000    0.000    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:43(get_any_empty_location_on_board)",
+      "500    0.000    0.000    0.000    0.000 {method 'round' of 'numpy.ndarray' objects}"
+    ]
+  },
+  {
+    "name": "full_100x50",
+    "timestamp": "2026-04-25T21:41:40.997293",
+    "config": {
+      "factions": 5,
+      "width": 100,
+      "height": 50,
+      "ticks": 2000,
+      "rng_seed": 42
+    },
+    "results": {
+      "total_time_ms": 2528.462063000916,
+      "time_per_tick_ms": 1.264231031500458,
+      "cells_occupied": 5000,
+      "total_cells": 5000,
+      "density": 1.0
+    },
+    "top_functions": [
+      "ncalls  tottime  percall  cumtime  percall filename:lineno(function)",
+      "2000    0.013    0.000    2.528    0.001 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/simulation.py:36(advance)",
+      "2000    0.062    0.000    2.511    0.001 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:73(_after_tick)",
+      "5005    0.861    0.000    1.270    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:90(get_cells_boardering_other)",
+      "10000    0.018    0.000    0.976    0.000 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:86(spawn_adjacent)",
+      "10000    0.580    0.000    0.943    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:137(get_empty_spawn_locations_for_team)",
+      "20010    0.125    0.000    0.615    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:546(pad)",
+      "40020    0.088    0.000    0.202    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:471(_as_pairs)",
+      "5005    0.038    0.000    0.186    0.000 /home/snaags/scripts/cellular-automata/packages/cellular_automata/src/cellular_automata/automata.py:99(_next_cell_state)",
+      "20010    0.088    0.000    0.130    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:87(_pad_simple)",
+      "40020    0.086    0.000    0.111    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:130(_set_pad_area)",
+      "5005    0.044    0.000    0.067    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:56(get_valid_neighbours)",
+      "918255    0.057    0.000    0.057    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:162(__init__)",
+      "49657    0.038    0.000    0.050    0.000 /home/snaags/scripts/cellular-automata/packages/gridcore/src/gridcore/grid_numpy.py:177(contents)",
+      "20010    0.012    0.000    0.048    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:3582(round)",
+      "20010    0.011    0.000    0.036    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:48(_wrapfunc)",
+      "40020    0.025    0.000    0.025    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:59(_view_roi)",
+      "80040    0.024    0.000    0.024    0.000 /home/snaags/scripts/cellular-automata/.venv/lib/python3.13/site-packages/numpy/lib/_arraypad_impl.py:34(_slice_at_axis)",
+      "20010    0.024    0.000    0.024    0.000 {method 'astype' of 'numpy.generic' objects}",
+      "11022    0.008    0.000    0.022    0.000 /home/snaags/.local/share/uv/python/cpython-3.13.7-linux-x86_64-gnu/lib/python3.13/random.py:345(choice)"
+    ]
+  }
+]
