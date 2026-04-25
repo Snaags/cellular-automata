@@ -1,14 +1,86 @@
 Metadata-Version: 2.4
 Name: cellular-automata
 Version: 0.1.0
-Summary: Cellular automata combat simulation with pygame viewer
+Summary: Cellular automata combat simulation with TUI viewer
 Requires-Python: >=3.13
 Description-Content-Type: text/markdown
-Requires-Dist: pygame
+Requires-Dist: blessed
 Requires-Dist: gridcore
-Requires-Dist: snakeviz>=2.2.2
-Requires-Dist: textual
 Provides-Extra: dev
 Requires-Dist: pytest; extra == "dev"
 Requires-Dist: ruff; extra == "dev"
 Requires-Dist: mypy; extra == "dev"
+Provides-Extra: pygame
+Requires-Dist: pygame; extra == "pygame"
+Provides-Extra: textual
+Requires-Dist: textual; extra == "textual"
+
+# Cellular Automata
+
+Combat simulation using cellular automata with TUI viewer.
+
+## Installation
+
+```bash
+pip install -e packages/cellular_automata/
+```
+
+## Usage
+
+### TUI Viewer (interactive)
+
+```bash
+cellular-automata-tui --config config.json
+```
+
+Controls:
+- `h` / `l` - scroll left / right
+- `k` / `j` - scroll up / down
+
+Options:
+- `--config <path>` - Path to config JSON file
+- `--headless`, `-n` - Run headless (no TUI, just simulation)
+- `--ticks N` - Maximum ticks to simulate (default: 1000)
+
+### Headless Mode
+
+Run simulation without TUI for testing:
+
+```bash
+cellular-automata-tui --config config.json --headless --ticks 500
+```
+
+Output:
+```
+Outcome: ongoing (tick 500)
+```
+
+## Configuration
+
+Create a `config.json` file:
+
+```json
+{
+  "board": { "width": 50, "height": 50 },
+  "factions": 5,
+  "tick_rate_ms": 100
+}
+```
+
+- `board.width` - Board width
+- `board.height` - Board height
+- `factions` - Number of factions/players
+- `tick_rate_ms` - Tick rate in milliseconds (TUI only)
+
+## Development
+
+```bash
+# Run tests
+pytest packages/cellular_automata/
+
+# Lint
+ruff check packages/cellular_automata/
+
+# Type check
+mypy packages/cellular_automata/
+```

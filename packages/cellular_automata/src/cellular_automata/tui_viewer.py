@@ -81,13 +81,18 @@ def render_board(state: Snapshot, term: blessed.Terminal, vp: Viewport) -> None:
 
 def main() -> None:
     config_path = None
+    headless = False
+    max_ticks = None
     for i, arg in enumerate(sys.argv[1:]):
         if arg == "--config" and i + 1 < len(sys.argv):
             config_path = Path(sys.argv[i + 2])
-            break
+        elif arg == "--headless" or arg == "-n":
+            headless = True
+        elif arg == "--ticks" and i + 1 < len(sys.argv):
+            max_ticks = int(sys.argv[i + 2])
 
     if not config_path:
-        print("Usage: cellular-automata-tui --config <path/to/config.json>")
+        print("Usage: cellular-automata-tui --config <path/to/config.json> [--headless|-n] [--ticks N]")
         sys.exit(1)
 
     config = load_config(config_path)
@@ -96,9 +101,19 @@ def main() -> None:
         factions=config.factions,
         width=config.board_width,
         height=config.board_height,
-        max_ticks=1000,
+        max_ticks=max_ticks or 1000,
         rng=None,
     )
+
+    if headless:
+        gstate = engine.snapshot()
+        ticks = 0
+        max_ticks = max_ticks or 1000
+        while gstate.outcome == "ongoing" and ticks < max_ticks:
+            gstate = engine.advance({})
+            ticks += 1
+        print(f"Outcome: {gstate.outcome} (tick {gstate.tick})")
+        return
 
     vp = Viewport()
     term = blessed.Terminal()

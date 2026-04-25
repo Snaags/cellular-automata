@@ -1,9 +1,13 @@
-pygame
+blessed
 gridcore
-snakeviz>=2.2.2
-textual
 
 [dev]
 pytest
 ruff
 mypy
+
+[pygame]
+pygame
+
+[textual]
+textual
