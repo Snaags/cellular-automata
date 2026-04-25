@@ -8,10 +8,13 @@ dependencies = [
     "pygame",
     "gridcore",
     "snakeviz>=2.2.2",
+    "textual",
 ]
 
 [project.scripts]
 cellular-automata = "cellular_automata.viewer:main"
+cellular-automata-tui = "cellular_automata.tui_viewer:main"
+cellular-automata-textual = "cellular_automata.textual_viewer:main"
 
 [project.optional-dependencies]
 dev = ["pytest", "ruff", "mypy"]

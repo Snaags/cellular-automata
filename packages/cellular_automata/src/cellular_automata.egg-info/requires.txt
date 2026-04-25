@@ -1,6 +1,7 @@
 pygame
 gridcore
 snakeviz>=2.2.2
+textual
 
 [dev]
 pytest

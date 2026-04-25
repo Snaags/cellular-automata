@@ -36,7 +36,7 @@ class CombatSimulation(SimulationBase):
 
     @classmethod
     def initialise_board_with_n_players(
-        cls, factions: int, width: int, height: int, max_ticks: int, rng = None
+        cls, factions: int, width: int, height: int, max_ticks: int, rng=None
     ):
         board = construct_empty_board(width, height)
 
@@ -78,8 +78,9 @@ class CombatSimulation(SimulationBase):
                 border_cells = self.board.get_cells_boardering_other(team)
                 cell_ = random.choice(border_cells)
                 cell_out = self._next_cell_state(cell_.location)
-                self.board.replace_contents_at_location(cell_.location, cell_out.contents[-1])
-
+                self.board.replace_contents_at_location(
+                    cell_.location, cell_out.contents[-1]
+                )
 
     def spawn_adjacent(self, team: Union[int, str]) -> bool:
         cells_bordering_empty = self.board.get_cells_boardering_empty()
@@ -89,14 +90,17 @@ class CombatSimulation(SimulationBase):
         if cells_bordering_empty_belonging_to_team:
             cell_to_spawn_from = random.choice(cells_bordering_empty_belonging_to_team)
 
-            valid_neighbours = self.board.get_valid_neighbours(cell_to_spawn_from.location)
+            valid_neighbours = self.board.get_valid_neighbours(
+                cell_to_spawn_from.location
+            )
             empty_neighbours = [
                 neighbour
                 for neighbour in valid_neighbours
                 if self.board.location_is_empty(neighbour)
             ]
             self.board.add_entity_at_empty_location(
-                entity=PlayerCell(team=team, health=1), loc=random.choice(empty_neighbours)
+                entity=PlayerCell(team=team, health=1),
+                loc=random.choice(empty_neighbours),
             )
             return True
         else:
@@ -123,8 +127,9 @@ class CombatSimulation(SimulationBase):
 
         win_rate = (allies**2 + 1.5) / (enemies**2 + allies**2 + 1.5)
 
-        if win_rate != 1:
-            print(f'battle between: {allies} allies and {enemies} enemies for {cell} at {location} with winrate of: {win_rate}')
+        # if win_rate != 1:
+        #    #print(f'battle between: {allies} allies and {enemies} enemies for {cell} at {location} with winrate of: {win_rate}')
+
         if random.random() < win_rate:
             return cell
         else:

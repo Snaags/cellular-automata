@@ -1,0 +1,5 @@
+{
+  "board": { "width": 100, "height": 100 },
+  "factions": 5,
+  "tick_rate_ms": 1
+}
